@@ -59,15 +59,18 @@ const Customizer = () => {
       // call our backend to generate an AI image
       setGeneratingImg(true)
 
-      const response = await fetch('http://localhost:8080/api/dalle', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          prompt,
-        }),
-      })
+      const response = await fetch(
+        'https://imagegenerationaiservice.onrender.com/api/dalle',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            prompt,
+          }),
+        }
+      )
 
       const data = await response.json()
 
@@ -91,6 +94,7 @@ const Customizer = () => {
       default:
         state.isLogoTexture = true
         state.isFullTexture = false
+        break
     }
 
     // After setting the state, we need to update the activeFilterTab to update the UI.
